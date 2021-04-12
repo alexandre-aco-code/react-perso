@@ -10,43 +10,48 @@ class Counters extends Component {
         ],
     };
 
+    
+    // incrémenter la valeur du compteur
     delete = (id) => {
-        // console.log("delete", id)
         const compteurClone = [...this.state.compteurs];
-        // console.log("compteurClone", compteurClone);
-        // console.log("compteurClone[id-1]", compteurClone[id-1]);
-
         compteurClone[id - 1].valeur--;
-        // console.log("compteurClone[id-1]", compteurClone[id - 1]);
-
         this.setState({ compteurs: compteurClone });
     };
 
+    // supprimer carrément un compteur
     deleteCounter = (id) => {
         const newCompteurs = [...this.state.compteurs].filter(c => c.id !== id)
-        console.log(newCompteurs)
         this.setState({ compteurs: newCompteurs });
     };
 
+    // ajouter un compteur
     add = (objet) => {
-        // console.log("add", objet);
         const index = this.state.compteurs.indexOf(objet);
-
         const compteurClone = [...this.state.compteurs];
 
-        console.log(compteurClone[index]);
-
         compteurClone[index] = { ...objet };
-
         compteurClone[index].valeur++;
 
-        // console.log(compteurClone);
         this.setState({ compteurs: compteurClone });
     };
+
+    reset = () => {
+        this.setState({
+            compteurs: [
+                { id: 1, valeur: 4 },
+                { id: 2, valeur: 3 },
+                { id: 3, valeur: 0 },
+            ],
+        });
+    }
 
     render() {
         return (
             <React.Fragment>
+                <button
+                    className="btn btn-primary btn-sm"
+                    onClick={this.reset}
+                >Reset</button>
                 {this.state.compteurs.map((compteur) => {
                     return (
                         <Counter
