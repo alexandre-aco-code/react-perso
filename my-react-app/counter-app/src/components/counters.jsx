@@ -1,67 +1,25 @@
+//src/components/counters.jsx
 import React, { Component } from "react";
 import Counter from "./counter";
 
 class Counters extends Component {
-    state = {
-        compteurs: [
-            { id: 1, valeur: 4 },
-            { id: 2, valeur: 3 },
-            { id: 3, valeur: 0 },
-        ],
-    };
-
-    constructor(props) {
-        super(props)
-        console.log(this.state.compteurs)
-        this.baseState = this.state.compteurs;
-    }
-
-    
-    // incrémenter la valeur du compteur
-    delete = (id) => {
-        const compteurClone = [...this.state.compteurs];
-        compteurClone[id - 1].valeur--;
-        this.setState({ compteurs: compteurClone });
-    };
-
-    // supprimer carrément un compteur
-    deleteCounter = (id) => {
-        const newCompteurs = [...this.state.compteurs].filter(c => c.id !== id)
-        this.setState({ compteurs: newCompteurs });
-    };
-
-    // ajouter un compteur
-    add = (objet) => {
-        const index = this.state.compteurs.indexOf(objet);
-        const compteurClone = [...this.state.compteurs];
-
-        compteurClone[index] = { ...objet };
-        compteurClone[index].valeur++;
-
-        this.setState({ compteurs: compteurClone });
-    };
-
-    reset = () => {
-        this.setState({
-            compteurs: this.baseState,
-        });
-    }
-
     render() {
         return (
             <React.Fragment>
                 <button
-                    className="btn btn-primary btn-sm"
-                    onClick={this.reset}
-                >Reset</button>
-                {this.state.compteurs.map((compteur) => {
+                    className="btn btn-primary btn-sm m-2"
+                    onClick={this.props.onReset}
+                >
+                    Reset
+        </button>
+                {this.props.compteurs.map(compteur => {
+                    //console.log(compteur);
                     return (
                         <Counter
                             key={compteur.id}
                             compteur={compteur}
-                            onDelete={this.delete}
-                            onAdd={this.add}
-                            onDeleteCounter={this.deleteCounter}
+                            onDelete={this.props.onDelete}
+                            onAdd={this.props.onAdd}
                         />
                     );
                 })}
@@ -69,5 +27,4 @@ class Counters extends Component {
         );
     }
 }
-
 export default Counters;
