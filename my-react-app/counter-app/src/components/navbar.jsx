@@ -1,27 +1,25 @@
 //src//components/navbar.jsx
-import React, { Component } from "react";
+import { Component } from "react";
 
-class NavBar extends Component {
-  render() {
-    return (
-      <nav className="navbar navbar-light bg-light">
-        <a className="navbar-brand" href="#">
-          App Compteur React
-          <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        </a>
-      </nav>
-    );
-  }
-  getBadgeClasses() {
-    let classes = "badge m-2 badge-";
-    classes += this.props.total === 0 ? "warning" : "success";
-    return classes;
-  }
+const NavBar = props => {
+  return (
+    <nav className="navbar navbar-light bg-light">
+      <a className="navbar-brand" href="#">
+        App Compteur React
+          <span className={getBadgeClasses(props.total)}>{formatCount()}</span>
+      </a>
+    </nav>
+  );
+}
 
-  formatCount() {
-    const { total } = this.props;
-    return total === 0 ? "Zero" : total;
-  }
+const getBadgeClasses = (total) => {
+  let classes = "badge m-2 badge-";
+  classes += total === 0 ? "warning" : "success";
+  return classes;
+}
+
+const formatCount = (total) => {
+  return total === 0 ? "Zero" : total;
 }
 
 
