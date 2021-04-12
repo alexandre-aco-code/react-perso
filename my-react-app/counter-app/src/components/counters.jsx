@@ -1,61 +1,66 @@
-import React, { Component } from 'react';
-import Counter from './counter';
+import React, { Component } from "react";
+import Counter from "./counter";
 
 class Counters extends Component {
     state = {
         compteurs: [
-            { id: 1, valeur:4},
-            { id: 2, valeur:3},
-            { id: 3, valeur:0},
-        ]
-    }
+            { id: 1, valeur: 4 },
+            { id: 2, valeur: 3 },
+            { id: 3, valeur: 0 },
+        ],
+    };
 
-    delete = id => {
+    delete = (id) => {
         // console.log("delete", id)
         const compteurClone = [...this.state.compteurs];
         // console.log("compteurClone", compteurClone);
         // console.log("compteurClone[id-1]", compteurClone[id-1]);
 
-
         compteurClone[id - 1].valeur--;
         // console.log("compteurClone[id-1]", compteurClone[id - 1]);
 
-        this.setState({compteurs: compteurClone})
-    }
+        this.setState({ compteurs: compteurClone });
+    };
 
-    add = objet => {
+    deleteCounter = (id) => {
+        const newCompteurs = [...this.state.compteurs].filter(c => c.id !== id)
+        console.log(newCompteurs)
+        this.setState({ compteurs: newCompteurs });
+    };
+
+    add = (objet) => {
         // console.log("add", objet);
         const index = this.state.compteurs.indexOf(objet);
 
         const compteurClone = [...this.state.compteurs];
-        
+
         console.log(compteurClone[index]);
 
         compteurClone[index] = { ...objet };
-        
+
         compteurClone[index].valeur++;
-        
+
         // console.log(compteurClone);
-        this.setState({ compteurs: compteurClone })
-    }
-        
-        
-    render() { 
+        this.setState({ compteurs: compteurClone });
+    };
+
+    render() {
         return (
             <React.Fragment>
-                {this.state.compteurs.map(compteur => {
+                {this.state.compteurs.map((compteur) => {
                     return (
                         <Counter
-                        key={compteur.id}
-                        compteur={compteur}
-                        onDelete={this.delete}
-                        onAdd={this.add}
+                            key={compteur.id}
+                            compteur={compteur}
+                            onDelete={this.delete}
+                            onAdd={this.add}
+                            onDeleteCounter={this.deleteCounter}
                         />
-                    )
+                    );
                 })}
             </React.Fragment>
         );
     }
 }
- 
+
 export default Counters;
