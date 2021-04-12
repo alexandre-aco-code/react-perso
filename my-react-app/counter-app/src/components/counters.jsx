@@ -10,6 +10,12 @@ class Counters extends Component {
         ],
     };
 
+    constructor(props) {
+        super(props)
+        console.log(this.state.compteurs)
+        this.baseState = this.state.compteurs;
+    }
+
     
     // incrémenter la valeur du compteur
     delete = (id) => {
@@ -37,11 +43,7 @@ class Counters extends Component {
 
     reset = () => {
         this.setState({
-            compteurs: [
-                { id: 1, valeur: 4 },
-                { id: 2, valeur: 3 },
-                { id: 3, valeur: 0 },
-            ],
+            compteurs: this.baseState,
         });
     }
 
