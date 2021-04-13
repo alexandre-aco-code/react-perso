@@ -3,6 +3,10 @@ import React, { Component } from "react";
 
 class Counter extends Component {
 
+  componentWillUnmount() {
+    console.log("phase 6 composant supprimé du dom")
+  }
+
   render() {
     return (
       <div>

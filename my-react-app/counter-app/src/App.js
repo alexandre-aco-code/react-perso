@@ -17,6 +17,15 @@ class App extends Component {
     constructor(props) {
         super(props);
         this.baseState = this.state.compteurs;
+        //initialisation du state
+    }
+
+    componentDidMount() {
+        console.log("App phase 3 le DOM réel est sync");
+    }
+
+    componentDidUpdate() {
+        console.log("App phase 5 state ou props du composent vient d'etre modifié")
     }
 
     delete = (id) => {
