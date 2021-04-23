@@ -1,55 +1,56 @@
 import React, { Component } from "react";
+import Input from "./input";
 
 class LoginForm extends Component {
     state = {
         profil: {
             login: "",
             password: ""
-        }
+        },
+        errors: {},
     };
+
+    change = e => {
+        const profil = { ...this.state.profil }
+        // profil.login = e.currentTarget.value;
+        // profil.password = e.currentTarget.value;
+
+        // console.log(e.currentTarget)
+        // console.log(e.currentTarget.name)
+        // console.log(e.currentTarget.value)
+
+        profil[e.currentTarget.name] = e.currentTarget.value
+
+        this.setState({ profil: profil })
+
+    }
 
     connexion = e => {
         e.preventDefault();
-        console.log("tentative de connexion" + " " + this.state.profil.login);
+        console.log(this.state.profil)
     }
 
-    change = e => {
-        const profil = { ...this.state.profil };
-        //profil.login = e.currentTarget.value;
-        profil[e.currentTarget.name] = e.currentTarget.value;
-        this.setState({ profil: profil });
-    }
 
     render() {
-        const { profil } = this.state;
         return (
             <>
                 <form onSubmit={this.connexion}>
                     <div className="form-group">
-                        <label htmlFor="login">Login</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="login"
-                            placeholder="login"
-                            value={profil.login}
-                            onChange={this.change}
+                        <Input
                             name="login"
+                            value={this.state.password}
+                            onChange={this.change}
+                            label="Login"
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            id="password"
-                            placeholder="password"
-                            value={profil.password}
-                            onChange={this.change}
+                        <Input
                             name="password"
+                            value={this.state.password}
+                            onChange={this.change}
+                            label="password"
                         />
                     </div>
-                    <p>{this.state.profil.login}</p>
                     <button type="submit" className="btn btn-primary">
                         Connexion
                     </button>
