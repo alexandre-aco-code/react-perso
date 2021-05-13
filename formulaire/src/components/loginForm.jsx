@@ -12,17 +12,8 @@ class LoginForm extends Component {
 
     change = e => {
         const profil = { ...this.state.profil }
-        // profil.login = e.currentTarget.value;
-        // profil.password = e.currentTarget.value;
-
-        // console.log(e.currentTarget)
-        // console.log(e.currentTarget.name)
-        // console.log(e.currentTarget.value)
-
         profil[e.currentTarget.name] = e.currentTarget.value
-
         this.setState({ profil: profil })
-
     }
 
     connexion = e => {
