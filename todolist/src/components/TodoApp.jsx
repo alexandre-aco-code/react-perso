@@ -16,8 +16,9 @@ class TodoApp extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const newItems = [...this.state.items, this.state.textprovisoire];
-        this.setState({ items: newItems, textprovisoire:"" });
+        if (this.state.textprovisoire.length === 0)
+            return;
+        else this.setState({ items: [...this.state.items, this.state.textprovisoire], textprovisoire: "" });
     };
 
     render() {
@@ -28,6 +29,7 @@ class TodoApp extends Component {
         return (
             <div>
                 <h1>Todolist</h1>
+                <h2>Tâches à réaliser : {this.state.items.length}</h2>
                 <ul>{TodoList}</ul>
 
                 <form onSubmit={this.handleSubmit}>
