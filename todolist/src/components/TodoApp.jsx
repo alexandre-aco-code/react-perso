@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import { Component } from "react";
+import TodoList from "./TodoList";
 
 class TodoApp extends Component {
     constructor() {
@@ -22,15 +23,13 @@ class TodoApp extends Component {
     };
 
     render() {
-        const TodoList = this.state.items.map((task, index) => (
-            <li key={index}>{task}</li>
-        ));
 
         return (
             <div>
                 <h1>Todolist</h1>
                 <h2>Tâches à réaliser : {this.state.items.length}</h2>
-                <ul>{TodoList}</ul>
+
+                <TodoList items={this.state.items}/>
 
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="new-todo">Que faut t'il faire chef ?</label>
