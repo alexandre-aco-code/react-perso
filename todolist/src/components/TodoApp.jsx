@@ -17,7 +17,7 @@ class TodoApp extends Component {
     handleSubmit = (e) => {
         e.preventDefault();
         const newItems = [...this.state.items, this.state.textprovisoire];
-        this.setState({ items: newItems });
+        this.setState({ items: newItems, textprovisoire:"" });
     };
 
     render() {
